@@ -1,0 +1,185 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    overflow: hidden;
+    background: linear-gradient(135deg, #1a0033, #330066, #1a0033);
+    min-height: 100vh;
+}
+
+.screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.screen.active {
+    display: flex;
+    opacity: 1;
+}
+
+/* Pantalla del botón */
+#buttonScreen {
+    background: linear-gradient(135deg, #1a0033, #330066, #4d0099);
+}
+
+.start-button {
+    background: linear-gradient(145deg, #ff6b9d, #ff1744);
+    border: none;
+    padding: 30px 60px;
+    border-radius: 50px;
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 10px 40px rgba(255, 23, 68, 0.5),
+        0 0 20px rgba(255, 107, 157, 0.3);
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.start-button span:first-child {
+    font-size: 48px;
+}
+
+.start-button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 15px 50px rgba(255, 23, 68, 0.7),
+        0 0 30px rgba(255, 107, 157, 0.5);
+}
+
+.start-button:active {
+    transform: scale(0.95);
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+/* Pantalla de animación */
+#animationScreen {
+    background: #000;
+}
+
+#heartCanvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.message {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+    max-width: 500px;
+    padding: 30px 40px;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 25px;
+    backdrop-filter: blur(5px);
+    border: 2px solid rgba(255, 107, 157, 0.6);
+    box-shadow: 0 0 30px rgba(255, 107, 157, 0.4),
+        inset 0 0 20px rgba(255, 107, 157, 0.1);
+    opacity: 0;
+    transition: opacity 2s ease;
+    z-index: 100;
+    pointer-events: none;
+}
+
+.message.visible {
+    opacity: 1;
+}
+
+.message.hidden {
+    opacity: 0;
+}
+
+.message-title {
+    font-size: 28px;
+    margin-bottom: 15px;
+    background: linear-gradient(45deg, #ff6b9d, #ffa3c7, #ff1744, #ff6b9d);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: shimmer 3s ease-in-out infinite;
+    font-weight: bold;
+    text-shadow: 0 0 20px rgba(255, 107, 157, 0.5);
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.message-text {
+    font-size: 15px;
+    line-height: 1.6;
+    margin-bottom: 15px;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+    color: rgba(255, 255, 255, 0.95);
+}
+
+.message-signature {
+    font-size: 17px;
+    font-style: italic;
+    color: #ffa3c7;
+    margin-top: 15px;
+    text-shadow: 0 0 10px rgba(255, 107, 157, 0.6);
+}
+
+@media (max-width: 768px) {
+    .message {
+        max-width: 90%;
+        padding: 30px;
+    }
+
+    .message-title {
+        font-size: 24px;
+    }
+
+    .message-text {
+        font-size: 16px;
+    }
+
+    .start-button {
+        padding: 25px 50px;
+        font-size: 20px;
+    }
+}
